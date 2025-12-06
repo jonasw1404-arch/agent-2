@@ -10,7 +10,7 @@
 <body>
     <div id="background-container">
         <img src="hintergrund.jpg" id="background-image" alt="Geheimdienst-Kontrollraum">
-        <div id="vignette-overlay"></div>
+        <div id="dimmer-overlay"></div> 
     </div>
 
     <audio id="agent-audio" loop autoplay>
@@ -19,35 +19,35 @@
 
     <div id="main-wrapper">
         
-        <header id="top-bar">
+        <header id="top-bar" class="glass-panel">
             <h1 class="logo-text">ALPHA TRACE <span>// SECURE OPERATIONAL CHANNEL</span></h1>
             <h2 class="status-bar">STATUS: <span class="status-neutral">PROTOCOL V3.1 ACTIVE</span></h2>
         </header>
 
         <div id="content-grid">
             
-            <div id="main-content" class="content-panel glass-panel">
-                <section id="mission-briefing">
+            <div id="main-content">
+                <section id="mission-briefing" class="sub-panel glass-panel">
                     <h3>[ MISSION BRIEFING // NYC GEOSCAN ]</h3>
                     <p class="mission-text">
                         Das Target hat kritische Daten an fünf Standorten in Manhattan fragmentiert. Ihre Aufgabe ist es, die **fünf Datenpunkte** (Namen, Kennungen, Adressen, etc.) anhand der beigefügten geografischen und visuellen Hinweise zu validieren und in das Terminal einzugeben. Bei korrekter Eingabe erfolgt eine **finale Identitätsbestätigung** und der Abschluss des Protokolls.
                     </p>
                 </section>
 
-                <div id="evidence-display">
-                    <div id="map-area" class="evidence-box">
+                <div id="evidence-container">
+                    <div id="map-area" class="sub-panel glass-panel">
                         <h3>[ GEOGRAPHISCHE ZONENKARTE ]</h3>
                         <p>[[ ANALOGE KARTE: NY - 5 MARKIERTE SEKTIONEN ]]</p>
                     </div>
                     
-                    <div id="images-area" class="evidence-box">
+                    <div id="images-area" class="sub-panel glass-panel">
                         <h3>[ VISUELLE DATENFRAGNMENTE (Zensiert) ]</h3>
                         <p>[[ ANALOGE FOTOS: STREET VIEW - Zensiert ]]</p>
                     </div>
                 </div>
             </div>
 
-            <div id="terminal-sidebar" class="content-panel glass-panel">
+            <div id="terminal-sidebar" class="sub-panel glass-panel">
                 <section id="terminal-input">
                     <h3>[ VALIDATION TERMINAL ]</h3>
                     <form id="key-submission-form">
