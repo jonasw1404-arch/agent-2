@@ -47,38 +47,91 @@
                 </div>
             </div>
 
-            <div id="terminal-sidebar" class="sub-panel glass-panel">
-                <section id="terminal-input">
-                    <h3>[ VALIDATION TERMINAL ]</h3>
-                    <form id="key-submission-form">
+            <div id="terminal-sidebar">
+                
+                <section id="terminal-q1" class="sub-panel glass-panel">
+                    <h3>DATA POINT 1: CODE A</h3>
+                    <p class="story-hint">
+                        <small>Zugriffscode A muss mit der primären Kommunikationsnummer des Ziels übereinstimmen.</small>
+                    </p>
+                    <form id="key-form-1" class="key-form">
                         <div class="input-group">
-                            <label for="key1">DATA POINT 1 (CODE A):</label>
+                            <label for="key1">Primär-Nummer (000) 000-0000:</label>
                             <input type="text" id="key1" name="key1" placeholder="ENTER VALIDATED DATA">
                         </div>
-                        <div class="input-group">
-                            <label for="key2">DATA POINT 2 (CODE B):</label>
-                            <input type="text" id="key2" name="key2" placeholder="ENTER VALIDATED DATA">
-                        </div>
-                        <div class="input-group">
-                            <label for="key3">DATA POINT 3 (CODE C):</label>
-                            <input type="text" id="key3" name="key3" placeholder="ENTER VALIDATED DATA">
-                        </div>
-                        <div class="input-group">
-                            <label for="key4">DATA POINT 4 (CODE D):</label>
-                            <input type="text" id="key4" name="key4" placeholder="ENTER VALIDATED DATA">
-                        </div>
-                        <div class="input-group">
-                            <label for="key5">DATA POINT 5 (CODE E):</label>
-                            <input type="text" id="key5" name="key5" placeholder="ENTER VALIDATED DATA">
-                        </div>
-                        <button type="submit" id="submit-keys">EXECUTE TRACE PROTOCOL</button>
+                        <button type="submit" data-key="key1" data-target="1">VALIDATE</button>
+                        <p class="feedback-message" id="feedback-key1"></p>
                     </form>
                 </section>
                 
-                <section id="result-display" style="display:none;">
-                    <h3>[ PROTOCOL RESULT ]</h3>
-                    <p id="final-name" class="status-success"></p>
+                <section id="terminal-q2" class="sub-panel glass-panel">
+                    <h3>DATA POINT 2: CODE B</h3>
+                    <p class="story-hint">
+                        <small>Code B bezieht sich auf den Namen des primären Treffpunkts, identifiziert auf der Zone 3 Karte.</small>
+                    </p>
+                    <form id="key-form-2" class="key-form">
+                        <div class="input-group">
+                            <label for="key2">Treffpunkt Name (z.B. The Raven):</label>
+                            <input type="text" id="key2" name="key2" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <button type="submit" data-key="key2" data-target="1">VALIDATE</button>
+                        <p class="feedback-message" id="feedback-key2"></p>
+                    </form>
                 </section>
+
+                <section id="terminal-q3" class="sub-panel glass-panel">
+                    <h3>DATA POINT 3: CODE C</h3>
+                    <p class="story-hint">
+                        <small>Geben Sie die Postleitzahl des letzten bekannten Standorts (siehe Foto-Fragment) ein.</small>
+                    </p>
+                    <form id="key-form-3" class="key-form">
+                        <div class="input-group">
+                            <label for="key3">Postleitzahl (5-stellig):</label>
+                            <input type="text" id="key3" name="key3" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <button type="submit" data-key="key3" data-target="1">VALIDATE</button>
+                        <p class="feedback-message" id="feedback-key3"></p>
+                    </form>
+                </section>
+
+                 <section id="terminal-q4" class="sub-panel glass-panel">
+                    <h3>DATA POINT 4: CODE D</h3>
+                    <p class="story-hint">
+                        <small>Dieser alphanumerische Code (D) war auf der Fahrzeugplakette des Targets gesichtet worden.</small>
+                    </p>
+                    <form id="key-form-4" class="key-form">
+                        <div class="input-group">
+                            <label for="key4">Plaketten-Code (4X00):</label>
+                            <input type="text" id="key4" name="key4" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <button type="submit" data-key="key4" data-target="1">VALIDATE</button>
+                        <p class="feedback-message" id="feedback-key4"></p>
+                    </form>
+                </section>
+
+                 <section id="terminal-q5" class="sub-panel glass-panel">
+                    <h3>DATA POINT 5: CODE E</h3>
+                    <p class="story-hint">
+                        <small>Das verschlüsselte Codewort E (z.B. KING-S) ist der Schlüssel zur Identität.</small>
+                    </p>
+                    <form id="key-form-5" class="key-form">
+                        <div class="input-group">
+                            <label for="key5">Codewort (KING-S):</label>
+                            <input type="text" id="key5" name="key5" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <button type="submit" data-key="key5" data-target="1">VALIDATE</button>
+                        <p class="feedback-message" id="feedback-key5"></p>
+                    </form>
+                </section>
+                
+                <section id="final-result-display" class="sub-panel glass-panel">
+                    <h3>[ FINAL IDENTIFICATION ]</h3>
+                    <p class="final-status-text">
+                        <span id="final-status">Validierung ausstehend. Alle 5 Codes müssen identifiziert werden.</span>
+                    </p>
+                    <p id="final-name" class="status-neutral"></p>
+                </section>
+
             </div>
 
         </div> <footer>
