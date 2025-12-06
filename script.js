@@ -1,10 +1,10 @@
 // Konfigurierbare Agenten-Daten
 const CORRECT_KEYS = {
-    key1: "(212) 555-0199",
-    key2: "The Blue Raven",
-    key3: "10013",
-    key4: "4X78",
-    key5: "KING-S"
+    key1: "1",
+    key2: "1",
+    key3: "1",
+    key4: "1",
+    key5: "1"
 };
 
 const FINAL_NAME = "AGENT [Ihr Name hier]"; // Ersetzen Sie dies durch Ihren Namen!
@@ -64,12 +64,12 @@ function checkSubmission(event) {
 
     for (const [key, value] of Object.entries(CORRECT_KEYS)) {
         const submittedValue = formData.get(key).trim();
-        const cleanSubmitted = submittedValue.toLowerCase().replace(/[^a-z0-9]/g, '');
-        const cleanCorrect = value.toLowerCase().replace(/[^a-z0-9]/g, '');
+        // Hier wird die Eingabe direkt mit '1' verglichen
+        const cleanSubmitted = submittedValue.trim(); 
         
         const inputElement = document.getElementById(key);
 
-        if (cleanSubmitted !== cleanCorrect) {
+        if (cleanSubmitted !== value) {
             allCorrect = false;
             inputElement.style.borderColor = failureColor; 
             inputElement.placeholder = "DATA INVALID! RETRY.";
