@@ -7,7 +7,7 @@ const CORRECT_KEYS = {
     key5: "KING-S"
 };
 
-const FINAL_NAME = "[Ihr Name hier]"; // Ersetzen Sie dies durch Ihren Namen!
+const FINAL_NAME = "AGENT [Ihr Name hier]"; // Ersetzen Sie dies durch Ihren Namen!
 
 // --- Funktion zur Hintergrundbild-Anpassung (Responsive 16:9) ---
 function adjustBackgroundImage() {
@@ -18,18 +18,14 @@ function adjustBackgroundImage() {
     const viewportHeight = window.innerHeight;
     const aspectRatio = 16 / 9; 
 
-    // Wenn das Viewport-Verhältnis breiter ist als 16:9, wird die Höhe die limitierende Größe.
     if (viewportWidth / viewportHeight > aspectRatio) {
-        // Querformatiger als 16:9 -> Bildbreite auf 100% setzen
         img.style.width = '100vw';
         img.style.height = 'auto';
     } else {
-        // Hochformatiger als 16:9 -> Bildhöhe auf 100% setzen
         img.style.width = 'auto';
         img.style.height = '100vh';
     }
 
-    // Stellen Sie sicher, dass das Bild zentriert bleibt
     img.style.top = '50%';
     img.style.left = '50%';
     img.style.transform = 'translate(-50%, -50%)';
@@ -39,14 +35,13 @@ function adjustBackgroundImage() {
 function tryToPlayAudio() {
     const audio = document.getElementById('agent-audio');
     if (audio) {
-        // Der Browser erfordert oft eine Benutzerinteraktion (Klick), um Audio abzuspielen.
         const playPromise = audio.play();
 
         if (playPromise !== undefined) {
             playPromise.then(_ => {
                 // Audio erfolgreich gestartet
             }).catch(error => {
-                // Wenn Auto-Play fehlschlägt, warten auf Klick-Interaktion
+                // Fallback: Warten auf Benutzerinteraktion
                 document.body.addEventListener('click', () => {
                     audio.play().catch(e => console.error("Audio-Wiedergabe fehlgeschlagen:", e));
                 }, { once: true });
@@ -65,10 +60,9 @@ function checkSubmission(event) {
     
     let allCorrect = true;
 
-    // Keys mit den korrekten Antworten abgleichen
     for (const [key, value] of Object.entries(CORRECT_KEYS)) {
         const submittedValue = formData.get(key).trim();
-        // Bereinigung für robusten Abgleich: Groß-/Kleinschreibung ignorieren, Leerzeichen/Sonderzeichen entfernen
+        // Bereinigung für robusten Abgleich
         const cleanSubmitted = submittedValue.toLowerCase().replace(/[^a-z0-9]/g, '');
         const cleanCorrect = value.toLowerCase().replace(/[^a-z0-9]/g, '');
         
@@ -76,11 +70,11 @@ function checkSubmission(event) {
 
         if (cleanSubmitted !== cleanCorrect) {
             allCorrect = false;
-            inputElement.style.borderColor = '#ff0000'; // Rot bei Fehler
-            inputElement.placeholder = "FEHLERHAFT";
+            inputElement.style.borderColor = '#e6522c'; // Rostrot bei Fehler
+            inputElement.placeholder = "ERROR: CHECK SOURCE";
         } else {
-            inputElement.style.borderColor = '#4CAF50'; // Grün bei Erfolg
-            inputElement.placeholder = "IDENTIFIZIERT";
+            inputElement.style.borderColor = '#4CAF50'; // Gedämpftes Grün bei Erfolg
+            inputElement.placeholder = "DATA VALIDATED";
         }
     }
 
@@ -90,18 +84,25 @@ function checkSubmission(event) {
     const submitButton = document.getElementById('submit-keys');
 
     if (allCorrect) {
-        finalName.textContent = `TARGET: ${FINAL_NAME}`;
-        headerH2.innerHTML = '<span class="status-success">AUTORISIERUNG ERTEILT</span>';
+        finalName.textContent = `TARGET IDENTIFIED: ${FINAL_NAME}`;
+        finalName.classList.remove('status-failure');
+        finalName.classList.add('status-success');
+        
+        headerH2.innerHTML = '<span class="status-success">STATUS: ACCESS GRANTED</span>';
         resultDisplay.style.display = 'block';
-        resultDisplay.querySelector('h3').textContent = '[ ZIEL IDENTIFIZIERT ]';
+        resultDisplay.querySelector('h3').textContent = '[ FINAL REPORT ]';
+        
         submitButton.disabled = true;
-        submitButton.textContent = 'ZUGRIFF GEWÄHRT';
-        submitButton.style.backgroundColor = '#4CAF50';
+        submitButton.textContent = 'TRACE COMPLETE';
+        submitButton.style.backgroundColor = '#4CAF50'; // Grün
     } else {
-        finalName.textContent = "VERARBEITUNGSFEHLER! ERNEUT VERSUCHEN.";
-        headerH2.innerHTML = '<span class="status-warning">AUTORISIERUNG AUSSTEHEND</span>';
+        finalName.textContent = "WARNING! ONE OR MORE DATA POINTS ARE INVALID. RE-CHECK SOURCE.";
+        finalName.classList.remove('status-success');
+        finalName.classList.add('status-failure');
+        
+        headerH2.innerHTML = '<span class="status-failure">STATUS: TRACE FAILED</span>';
         resultDisplay.style.display = 'block';
-        resultDisplay.querySelector('h3').textContent = '[ FEHLERMELDUNG ]';
+        resultDisplay.querySelector('h3').textContent = '[ TRACE RESULT ]';
     }
 }
 
