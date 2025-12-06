@@ -1,0 +1,169 @@
+/* Grundlegender Reset & Agenten-Look */
+body {
+    font-family: 'Courier New', Courier, monospace; /* Monospace-Schrift */
+    background-color: #0d1117; /* Dunkler Hintergrund */
+    color: #00ff7f; /* Neon-Grün als Hauptfarbe */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Verhindert horizontale Scrollbalken */
+}
+
+/* --- Hintergrundbild-Logik --- */
+#background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Unter dem Inhalt */
+    overflow: hidden;
+}
+
+#background-image {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    /* Standardmäßig an der kleinsten Seite (meist Breite) anpassen */
+    width: 100vw; 
+    height: auto;
+    
+    /* Mitte zentrieren */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Optional: Leichte Verdunklung/Glitch-Effekt */
+    opacity: 0.3;
+    filter: blur(2px);
+    transition: width 0.3s, height 0.3s; /* Für das JS-Update */
+}
+
+/* --- Hauptinhalts-Layout --- */
+#main-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.75); /* Leichter transparenter Kasten */
+    border: 1px solid #00ff7f; /* Neon-Rahmen */
+    box-shadow: 0 0 10px #00ff7f; /* Leucht-Effekt */
+}
+
+/* --- Typografie & Akzente --- */
+header, section, footer {
+    padding: 15px 0;
+    border-bottom: 1px dashed rgba(0, 255, 127, 0.5);
+}
+
+h1 {
+    color: #ff0066; /* Warn-/Kritische Farbe */
+    text-shadow: 0 0 5px #ff0066;
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+h3 {
+    color: #33aaff; /* Akzentfarbe Blau */
+    border-left: 5px solid #33aaff;
+    padding-left: 10px;
+    margin-top: 25px;
+}
+
+.status-warning {
+    color: #ffcc00; /* Gelb für Status/Warnungen */
+}
+
+.status-success {
+    color: #00ff7f; /* Grün für Erfolg */
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ff7f;
+}
+
+.mission-text {
+    line-height: 1.6;
+}
+
+.placeholder {
+    background-color: #1a1a1a;
+    padding: 20px;
+    text-align: center;
+    border: 1px dotted #33aaff;
+    color: #33aaff;
+}
+
+/* --- Eingabebereich (Terminal) --- */
+#terminal-input {
+    margin-top: 30px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 98%;
+    padding: 10px;
+    background-color: #1a1a1a;
+    border: 1px solid #00ff7f;
+    color: #00ff7f;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    box-shadow: inset 0 0 5px #00ff7f;
+}
+
+/* Button-Styling */
+button {
+    background-color: #ff0066;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    box-shadow: 0 0 10px #ff0066;
+}
+
+button:hover {
+    background-color: #cc0052;
+}
+
+/* Layout für Karten- und Bildbereich */
+#evidence-display {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#map-area, #images-area {
+    flex: 1;
+}
+
+/* Responsivität für kleinere Bildschirme */
+@media (max-width: 768px) {
+    #evidence-display {
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    #main-content {
+        margin: 10px;
+        padding: 10px;
+    }
+}
