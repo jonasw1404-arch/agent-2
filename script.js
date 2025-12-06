@@ -7,7 +7,7 @@ const CORRECT_KEYS = {
     key5: "KING-S"
 };
 
-const FINAL_NAME = "[Ihr Name hier]"; // Ersetzen Sie dies durch Ihren Namen!
+const FINAL_NAME = "AGENT [Ihr Name hier]"; // Ersetzen Sie dies durch Ihren Namen!
 
 // --- Funktion zur Hintergrundbild-Anpassung (Responsive 16:9) ---
 function adjustBackgroundImage() {
@@ -18,6 +18,7 @@ function adjustBackgroundImage() {
     const viewportHeight = window.innerHeight;
     const aspectRatio = 16 / 9; 
 
+    // Logik: Wähle die Dimension, die das gesamte Fenster abdeckt (cover)
     if (viewportWidth / viewportHeight > aspectRatio) {
         img.style.width = '100vw';
         img.style.height = 'auto';
@@ -59,9 +60,8 @@ function checkSubmission(event) {
     const formData = new FormData(form);
     
     let allCorrect = true;
-    const accentColor = '#3498DB'; // Blau
-    const successColor = '#2ECC71'; // Grün
-    const failureColor = '#E74C3C'; // Rot
+    const successColor = '#27AE60'; 
+    const failureColor = '#E74C3C'; 
 
     for (const [key, value] of Object.entries(CORRECT_KEYS)) {
         const submittedValue = formData.get(key).trim();
@@ -73,7 +73,7 @@ function checkSubmission(event) {
         if (cleanSubmitted !== cleanCorrect) {
             allCorrect = false;
             inputElement.style.borderColor = failureColor; 
-            inputElement.placeholder = "DATA INVALID";
+            inputElement.placeholder = "DATA INVALID! RETRY.";
         } else {
             inputElement.style.borderColor = successColor; 
             inputElement.placeholder = "DATA VALIDATED";
@@ -99,8 +99,9 @@ function checkSubmission(event) {
         submitButton.disabled = true;
         submitButton.textContent = 'ACCESS GRANTED';
         submitButton.style.backgroundColor = successColor;
+        submitButton.style.boxShadow = `0 6px 15px ${successColor}40`; // Grüner Button-Schatten
     } else {
-        finalName.textContent = "VALIDATION FAILED. ONE OR MORE ENTRIES ARE INCORRECT.";
+        finalName.textContent = "VALIDATION FAILED. CHECK INPUTS AND TRY AGAIN.";
         finalName.classList.remove('status-success');
         finalName.classList.add('status-failure');
         
