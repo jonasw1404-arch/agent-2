@@ -1,14 +1,14 @@
 /* Grundlegender Reset & Agenten-Look */
 body {
-    font-family: Arial, sans-serif; /* Ähnlich wie im Bild, nicht monospace */
-    background-color: #0c0c0d; /* Sehr dunkler Hintergrund */
-    color: #bdbdbd; /* Hellgraue Hauptschrift */
+    font-family: 'Roboto Mono', monospace; /* Taktische, gut lesbare Monospace */
+    background-color: #0d0d0d; /* Sehr dunkler Hintergrund */
+    color: #c0c0c0; /* Helles Grau für Hauptschrift */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
 
-/* --- Hintergrundbild-Logik (Sichtbarkeit erhöht) --- */
+/* --- Hintergrundbild-Logik (Dunkel und Texturiert) --- */
 #background-container {
     position: fixed;
     top: 0;
@@ -17,13 +17,11 @@ body {
     height: 100%;
     z-index: -2;
     overflow: hidden;
-    /* Dunkle, leicht rote Überlagerung, um den Kontrast zu erhöhen */
-    background-color: rgba(30, 0, 0, 0.5); 
+    background-color: #000000;
 }
 
 #background-image {
     position: absolute;
-    /* Beibehaltung der responsiven 16:9 Logik */
     min-width: 100%;
     min-height: 100%;
     width: 100vw; 
@@ -32,112 +30,133 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     
-    /* Hintergrund ist nun sichtbarer und klarer */
-    opacity: 0.2; /* Weniger transparent */
-    filter: brightness(0.7) contrast(1.2); /* Etwas dunkler und kontrastreicher */
+    /* Der gewünschte dunkle, ungesättigte Look */
+    opacity: 0.15; /* Sehr schwach sichtbar */
+    filter: grayscale(100%) brightness(0.5); /* Entsättigt und stark abgedunkelt */
     transition: width 0.3s, height 0.3s;
+}
+
+/* Dunkle Vignette für den Fokus auf die Mitte */
+#vignette-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 85%);
+    z-index: -1;
 }
 
 /* --- Haupt-Layout (Flexbox für Spalten-Layout) --- */
 #main-wrapper {
     display: flex;
     max-width: 1400px;
-    height: 100vh; /* Volle Viewport-Höhe */
     margin: 0 auto;
-    padding-left: 50px; /* Platz für den vertikalen Titel */
+    padding: 20px 0; 
+    padding-left: 60px; /* Platz für den vertikalen Titel */
     position: relative;
+    min-height: 100vh;
 }
 
-/* Vertikaler Titel (Linke Spalte) */
+/* Vertikaler Titel (Linker Seiten-Akzent) */
 #vertical-title {
     position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
-    writing-mode: vertical-rl; /* Vertikale Schrift */
+    writing-mode: vertical-rl;
     transform: rotate(180deg);
-    font-size: 2em;
-    font-weight: bold;
-    color: #920000; /* Dunkelroter Akzent wie im Bild */
-    padding: 20px 10px;
-    border-right: 1px solid #920000;
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #444444; /* Dunkelgrauer Akzent */
+    padding: 20px 15px;
+    border-right: 1px solid #222222;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-/* Hauptinhalts-Bereich (Mitte) */
+/* Hauptinhalts-Bereich (Links) */
 #main-content {
-    flex: 2; /* Nimmt mehr Platz ein */
-    padding: 20px 30px;
-    padding-left: 0;
-    border-right: 1px solid #3d3d3d;
-    overflow-y: auto; /* Erlaubt Scrollen bei kleinem Fenster */
+    flex: 2;
+    padding: 0 40px 0 10px;
+    border-right: 1px solid #222222;
 }
 
-/* Terminal/Eingabe-Sidebar (Rechte Spalte) */
+/* Terminal/Eingabe-Sidebar (Rechts) */
 #terminal-sidebar {
-    flex: 1; /* Nimmt weniger Platz ein */
-    padding: 20px 30px;
-    background-color: rgba(0, 0, 0, 0.4); /* Leichte Transparenz */
-    min-width: 400px; /* Mindestbreite für das Terminal */
+    flex: 1;
+    padding: 0 10px 0 40px;
+    background-color: transparent; 
+    min-width: 350px; 
 }
 
 
 /* --- Typografie & Akzente --- */
-header, section, footer {
+header, section {
     padding: 10px 0;
 }
 
 h1 {
-    font-size: 1.8em;
-    color: #920000; /* Dunkelroter Haupttitel */
+    font-size: 2.2em;
+    color: #e6522c; /* Rostroter/Dunkelorange Akzent */
     margin-bottom: 5px;
+    text-transform: uppercase;
 }
 
 h2 {
-    font-size: 0.9em;
+    font-size: 0.7em;
     text-transform: uppercase;
-    color: #777777; /* Graue Unterüberschrift */
+    color: #777777; 
     margin-top: 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #3d3d3d; /* Trennlinie */
+    padding-bottom: 15px;
+    border-bottom: 1px solid #222222; 
+    letter-spacing: 1px;
 }
 
 h3 {
-    font-size: 1.1em;
-    color: #bdbdbd;
+    font-size: 1em;
+    color: #c0c0c0;
     text-transform: uppercase;
-    margin-top: 25px;
+    margin-top: 20px;
     margin-bottom: 5px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #3d3d3d;
+    border-bottom: 1px solid #222222;
 }
 
-.status-warning {
-    color: #920000;
-    font-weight: bold;
+.status-neutral {
+    color: #c0c0c0;
+    font-weight: 700;
 }
 
 .status-success {
-    color: #4CAF50; /* Grüner Erfolg */
-    font-size: 1.2em;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    color: #4CAF50; /* Gedämpftes Grün für Erfolg */
+    font-size: 1.1em;
+    font-weight: 700;
+    text-shadow: 0 0 3px rgba(76, 175, 80, 0.3);
     display: block;
     margin-top: 15px;
+}
+
+.status-failure {
+    color: #e6522c;
+    font-size: 1.1em;
+    font-weight: 700;
 }
 
 .mission-text {
     line-height: 1.6;
     font-size: 0.9em;
-    color: #a8a8a8;
+    color: #a0a0a0;
 }
 
-#map-area p, #images-area p {
-    background-color: #1a1a1a;
+.evidence-box p {
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 15px;
     margin-top: 10px;
-    border: 1px solid #3d3d3d;
+    border: 1px solid #222222;
     font-style: italic;
     font-size: 0.8em;
+    color: #888888;
 }
 
 /* --- Eingabebereich (Terminal) --- */
@@ -152,49 +171,53 @@ h3 {
 label {
     display: block;
     margin-bottom: 5px;
-    font-size: 0.85em;
-    color: #bdbdbd;
+    font-size: 0.8em;
+    color: #a0a0a0;
+    text-transform: uppercase;
 }
 
 input[type="text"] {
     width: 95%;
     padding: 8px;
-    background-color: #0c0c0d;
-    border: 1px solid #3d3d3d;
-    color: #bdbdbd;
-    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    border: 1px solid #333333;
+    color: #c0c0c0;
+    font-family: 'Roboto Mono', monospace;
     font-size: 1em;
-    box-shadow: none;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
     transition: border-color 0.3s;
 }
 
 input[type="text"]:focus {
-    border-color: #920000;
+    border-color: #e6522c; /* Akzentfarbe bei Fokus */
     outline: none;
 }
 
 /* Button-Styling */
 button {
-    background-color: #920000;
-    color: white;
+    background-color: #e6522c;
+    color: #1a1a1a;
     border: none;
     padding: 10px 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto Mono', monospace;
     font-size: 1em;
     cursor: pointer;
     margin-top: 20px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
     text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 button:hover {
-    background-color: #a02020;
+    background-color: #ff7f50;
+    color: #0d0d0d;
 }
 
 footer {
     position: absolute;
     bottom: 20px;
-    right: 30px;
+    left: 40px; 
     font-size: 0.7em;
     color: #777777;
 }
@@ -203,10 +226,11 @@ footer {
 @media (max-width: 1000px) {
     #main-wrapper {
         flex-direction: column;
-        height: auto;
+        padding-left: 0;
+        min-height: auto;
     }
     #vertical-title {
-        display: none; /* Auf kleinen Geräten ausblenden */
+        display: none;
     }
     #main-content, #terminal-sidebar {
         min-width: unset;
@@ -215,7 +239,8 @@ footer {
     }
     footer {
         position: relative;
-        text-align: right;
+        text-align: center;
         padding-top: 20px;
+        left: 0;
     }
 }
