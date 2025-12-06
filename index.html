@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OPERATION: NIGHT OWL // EINGESCHRÄNKTER ZUGRIFF</title>
+    <title>A SYNDICATE'S TRACE // CLASSIFIED</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="background-container">
-        <img src="hintergrund.jpg" id="background-image" alt="Geheimdienst-Hintergrund">
+        <img src="hintergrund.jpg" id="background-image" alt="Agenten-Pinnwand">
+        <div id="vignette-overlay"></div>
     </div>
 
     <audio id="agent-audio" loop autoplay>
@@ -18,30 +20,30 @@
     <div id="main-wrapper">
         
         <aside id="vertical-title">
-            // OPERATION: NIGHT OWL //
+            A SYNDICATE'S TRACE // CLASSIFIED
         </aside>
 
         <div id="main-content">
             <header>
-                <h1>OPERATION: NIGHT OWL //</h1>
-                <h2><span class="status-warning">AUTORISIERUNG AUSSTEHEND</span></h2>
+                <h1>A SYNDICATE'S TRACE</h1>
+                <h2>// THE COLLECTED EVIDENCE ALLOWED US TO TRACE OUR SUSPECTS //</h2>
             </header>
 
             <section id="mission-briefing">
-                <h3>[ PRIMÄRES BRIEFING ]</h3>
+                <h3>[ TRACKING REPORT - ALPHA 7 ]</h3>
                 <p class="mission-text">
-                    ALLE SYSTEMDATEN IN DER MENENGE ALINE DS PRIMÄRE US TRANTE ERE. ZURCCE AUSREI FGLT RGT ILGSG, IOW MEIRDS FÜRSTEN. MGIT RIED US&I TRACE OUR SUSPECTS OUR SHEEGS. UND ZOLT SHEGSOBE TKO KOESIN TIESNOGIUD IS GGNSHEL. SN BOECH RINDE OUR MCMIFNIG OUR SHEEGS.
+                    Fünf kritische Beweisstücke wurden durch eine Datenpanne maskiert und auf fünf definierte Zonen in Manhattan verteilt. Ihre Aufgabe: **Validieren Sie die Zonen** und **Identifizieren Sie die Ziel-Datenpunkte** (Telefonnummern, Namen, Kennzeichnungen). Die Koordinaten (Bilder) und die Zonenkarte sind im Anhang. Geben Sie die **fünf korrekten Schlüsselinformationen** in das Terminal ein, um die finale Identität des Targets freizuschalten.
                 </p>
             </section>
 
             <section id="evidence-display">
-                <div id="map-area">
-                    <h3>[ ZONE KARTE ]</h3>
+                <div id="map-area" class="evidence-box">
+                    <h3>[ ZONE MAP - New York ]</h3>
                     <p>[[ ANALOGE KARTE: NY - 5 GEFÄHRLICHE ZONEN ]]</p>
                 </div>
                 
-                <div id="images-area">
-                    <h3>[ BEWEISFOTOS - 001 bis 005 ]</h3>
+                <div id="images-area" class="evidence-box">
+                    <h3>[ EVIDENTIAL PHOTOS - Zensiert ]</h3>
                     <p>[[ ANALOGE FOTOS: STREET VIEW - Zensiert ]]</p>
                 </div>
             </section>
@@ -49,43 +51,43 @@
 
         <div id="terminal-sidebar">
             <header>
-                <h1>OPERATION: AUSSTEIGUNG //</h1>
-                <h2><span class="status-warning">AUTORISIERUNG AUSSTEHEND</span></h2>
+                <h1 class="alt-h1">FILE TRACE TERMINAL</h1>
+                <h2><span class="status-neutral">STATUS: AWAITING INPUT</span></h2>
             </header>
 
             <section id="terminal-input">
                 <form id="key-submission-form">
                     <div class="input-group">
-                        <label for="key1">DATENPUNKT 1:</label>
-                        <input type="text" id="key1" name="key1" placeholder="ZONE A">
+                        <label for="key1">DATA POINT 1 (T-1):</label>
+                        <input type="text" id="key1" name="key1" placeholder="KEY DATA 1">
                     </div>
                     <div class="input-group">
-                        <label for="key2">DATENPUNKT 2:</label>
-                        <input type="text" id="key2" name="key2" placeholder="ZONE B">
+                        <label for="key2">DATA POINT 2 (T-2):</label>
+                        <input type="text" id="key2" name="key2" placeholder="KEY DATA 2">
                     </div>
                     <div class="input-group">
-                        <label for="key3">DATENPUNKT 3:</label>
-                        <input type="text" id="key3" name="key3" placeholder="ZONE C">
+                        <label for="key3">DATA POINT 3 (T-3):</label>
+                        <input type="text" id="key3" name="key3" placeholder="KEY DATA 3">
                     </div>
                     <div class="input-group">
-                        <label for="key4">DATENPUNKT 4:</label>
-                        <input type="text" id="key4" name="key4" placeholder="ZONE D">
+                        <label for="key4">DATA POINT 4 (T-4):</label>
+                        <input type="text" id="key4" name="key4" placeholder="KEY DATA 4">
                     </div>
                     <div class="input-group">
-                        <label for="key5">DATENPUNKT 5:</label>
-                        <input type="text" id="key5" name="key5" placeholder="ZONE E">
+                        <label for="key5">DATA POINT 5 (T-5):</label>
+                        <input type="text" id="key5" name="key5" placeholder="KEY DATA 5">
                     </div>
-                    <button type="submit" id="submit-keys">Daten verarossen</button>
+                    <button type="submit" id="submit-keys">EXECUTE TRACE</button>
                 </form>
             </section>
             
             <section id="result-display" style="display:none;">
-                <h3>[ ZIEL IDENTIFIZIERT ]</h3>
+                <h3>[ TRACE RESULT ]</h3>
                 <p id="final-name" class="status-success"></p>
             </section>
 
             <footer>
-                <p>// ENDE DER VERARBEITUNG // SENSITIVITÄT: TOP SECRET</p>
+                <p>23:55 // CLASSIFIED // LEVEL 5 ACCESS REQUIRED</p>
             </footer>
         </div>
 
