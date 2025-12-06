@@ -18,7 +18,6 @@ function adjustBackgroundImage() {
     const viewportHeight = window.innerHeight;
     const aspectRatio = 16 / 9; 
 
-    // Logik: Wähle die Dimension, die das gesamte Fenster abdeckt (cover)
     if (viewportWidth / viewportHeight > aspectRatio) {
         img.style.width = '100vw';
         img.style.height = 'auto';
@@ -99,7 +98,7 @@ function checkSubmission(event) {
         submitButton.disabled = true;
         submitButton.textContent = 'ACCESS GRANTED';
         submitButton.style.backgroundColor = successColor;
-        submitButton.style.boxShadow = `0 6px 15px ${successColor}40`; // Grüner Button-Schatten
+        submitButton.style.boxShadow = `0 6px 15px ${successColor}40`;
     } else {
         finalName.textContent = "VALIDATION FAILED. CHECK INPUTS AND TRY AGAIN.";
         finalName.classList.remove('status-success');
