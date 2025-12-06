@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPERATION: NIGHT OWL - EINGESCHRÄNKTER ZUGRIFF</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="background-container">
+        <img src="hintergrund.jpg" id="background-image" alt="Geheimdienst-Hintergrund">
+    </div>
+
+    <audio id="agent-audio" loop autoplay>
+        <source src="musik.mp3" type="audio/mpeg">
+        Ihr Browser unterstützt das Audio-Element nicht.
+    </audio>
+
+    <div id="main-content">
+
+        <header>
+            <h1>// OPERATION: NIGHT OWL //</h1>
+            <h2><span class="status-warning">AUTORISIERUNG AUSSTEHEND</span> | AKTE: A-711-NY-24-D</h2>
+        </header>
+
+        <section id="mission-briefing">
+            <h3>[ PRIMÄRES BRIEFING ]</h3>
+            <p><strong>AGENT:</strong> Sie. | <strong>STANDORT:</strong> New York City, Primärgebiet 5-Boroughs.</p>
+            <p class="mission-text">Fünf kritische Beweisstücke wurden durch eine Datenpanne maskiert und auf fünf definierte Zonen in Manhattan verteilt. Ihre Aufgabe: **Validieren Sie die Zonen** und **Identifizieren Sie die Ziel-Datenpunkte** (Telefonnummern, Namen, Kennzeichnungen). Die Koordinaten (Bilder) und die Zonenkarte sind im Anhang. Geben Sie die **fünf korrekten Schlüsselinformationen** in das Terminal ein, um die finale Identität des Targets freizuschalten.</p>
+        </section>
+
+        <section id="evidence-display">
+            <div id="map-area">
+                <h3>[ ZONE KARTE ]</h3>
+                <p class="placeholder">[[ ANALOGE KARTE: NY - 5 GEFÄHRLICHE ZONEN ]]</p>
+                <p>Abgleich der Ziel-Koordinaten mit den auf der Karte markierten Zonen nötig.</p>
+            </div>
+            
+            <div id="images-area">
+                <h3>[ BEWEISFOTOS - 001 bis 005 ]</h3>
+                <p class="placeholder">[[ ANALOGE FOTOS: STREET VIEW - Zensiert ]]</p>
+                <p>Unzensierte Daten (Telefonnr., Name, etc.) müssen ermittelt werden.</p>
+            </div>
+        </section>
+
+        <section id="terminal-input">
+            <h3>[ KRYPTO-TERMINAL ]</h3>
+            <form id="key-submission-form">
+                <div class="input-group">
+                    <label for="key1">SCHLÜSSEL-DATENPUNKT 1 (ZONE A):</label>
+                    <input type="text" id="key1" name="key1" placeholder="Datenpunkt 1 hier eingeben">
+                </div>
+                <div class="input-group">
+                    <label for="key2">SCHLÜSSEL-DATENPUNKT 2 (ZONE B):</label>
+                    <input type="text" id="key2" name="key2" placeholder="Datenpunkt 2 hier eingeben">
+                </div>
+                <div class="input-group">
+                    <label for="key3">SCHLÜSSEL-DATENPUNKT 3 (ZONE C):</label>
+                    <input type="text" id="key3" name="key3" placeholder="Datenpunkt 3 hier eingeben">
+                </div>
+                <div class="input-group">
+                    <label for="key4">SCHLÜSSEL-DATENPUNKT 4 (ZONE D):</label>
+                    <input type="text" id="key4" name="key4" placeholder="Datenpunkt 4 hier eingeben">
+                </div>
+                <div class="input-group">
+                    <label for="key5">SCHLÜSSEL-DATENPUNKT 5 (ZONE E):</label>
+                    <input type="text" id="key5" name="key5" placeholder="Datenpunkt 5 hier eingeben">
+                </div>
+                <button type="submit" id="submit-keys">// DATEN VERARBEITEN // (ENTER)</button>
+            </form>
+        </section>
+
+        <section id="result-display" style="display:none;">
+            <h3>[ ZIEL-IDENTITÄT ]</h3>
+            <p id="final-name" class="status-success"></p>
+        </section>
+
+        <footer>
+            <p>// ENDE DER VERARBEITUNG // SENSITIVITÄT: TOP SECRET</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
