@@ -30,13 +30,11 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     
-    /* Hintergrund ist immer sichtbar und klar */
     opacity: 0.8; 
-    filter: grayscale(100%) brightness(0.5); /* Etwas dunkler, aber klar */
+    filter: grayscale(100%) brightness(0.5); 
     transition: width 0.3s, height 0.3s;
 }
 
-/* Sehr leichtes Dimmen, um Lesbarkeit zu gewährleisten */
 #dimmer-overlay {
     position: fixed;
     top: 0;
@@ -47,7 +45,7 @@ body {
     z-index: -1;
 }
 
-/* --- Haupt-Layout (Zentriert und elegant) --- */
+/* --- Haupt-Layout --- */
 #main-wrapper {
     max-width: 1500px;
     margin: 40px auto;
@@ -57,30 +55,26 @@ body {
 
 /* --- GLASSMORPHISMUS STIL MIT WEISSEM RAND --- */
 .glass-panel {
-    /* Glassmorphismus */
-    background: rgba(255, 255, 255, 0.05); /* Sehr helle Transparenz */
-    backdrop-filter: blur(10px); /* Starker Unschärfe-Effekt */
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px);
     
-    /* Dünner, eleganter, leuchtender Rand */
     border: 1px solid rgba(255, 255, 255, 0.2); 
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     
     padding: 30px;
-    margin-bottom: 20px; /* Abstand zwischen den Panels */
+    /* Abstand zwischen den Boxen wird nun durch gap und margin-bottom verwaltet */
 }
 
-/* Kopfzeile */
 #top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px; /* Innen-Padding der Box */
+    padding: 20px 30px;
     margin-bottom: 30px;
 }
 
-/* Content Grid */
 #content-grid {
     display: flex;
     gap: 30px;
@@ -93,39 +87,52 @@ body {
     gap: 30px;
 }
 
-/* Für Beweise (Karten und Bilder) brauchen wir einen Container, da sie nebeneinander stehen sollen */
 #evidence-container {
     display: flex;
     gap: 30px;
 }
 
-.sub-panel {
-    /* Setzt das Padding und den Rahmen des Glass-Panel neu */
-    padding: 30px; 
-    margin: 0; /* Entfernt den Margin, da er durch gap im Grid gesetzt wird */
+#terminal-sidebar {
+    flex: 1; 
+    min-width: 400px;
+    /* WICHTIG: Erlaubt das Stapeln der Rätsel-Boxen mit Abstand */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 #map-area, #images-area {
     flex: 1;
 }
 
-#terminal-sidebar {
-    flex: 1; 
-    min-width: 400px;
+/* Story-Hinweis Text */
+.story-hint {
+    font-size: 0.8em;
+    color: #a0a0a0;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    border-left: 3px solid #6C7A89;
+    padding-left: 10px;
+}
+
+/* Feedback-Nachricht Styling */
+.feedback-message {
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-top: 15px;
+    min-height: 20px; /* Platzhalter, damit es nicht springt */
+}
+
+/* Finale Status-Anzeige */
+.final-status-text {
+    font-size: 1.1em;
+    font-weight: 600;
 }
 
 /* --- Typografie & Details --- */
-.logo-text {
-    font-size: 1.8em;
-    font-weight: 700;
-    color: #ffffff; 
-}
-
-.logo-text span {
-    font-size: 0.6em;
-    font-weight: 300;
-    color: #a0a0a0;
-}
+.logo-text { font-size: 1.8em; font-weight: 700; color: #ffffff; }
+.logo-text span { font-size: 0.6em; font-weight: 300; color: #a0a0a0; }
 
 h3 {
     font-size: 1.2em;
@@ -139,32 +146,11 @@ h3 {
 }
 
 /* Statusfarben */
-.status-neutral {
-    color: #6C7A89; 
-    font-weight: 600;
-}
+.status-neutral { color: #6C7A89; font-weight: 600; }
+.status-success { color: #27AE60; font-weight: 700; }
+.status-failure { color: #E74C3C; font-weight: 700; }
 
-.status-success {
-    color: #27AE60; 
-    font-weight: 700;
-}
-
-.status-failure {
-    color: #E74C3C; 
-    font-weight: 700;
-}
-
-/* Beweis-Boxen Hintergrund */
-.evidence-box p {
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.85em;
-    color: #b0b0b0;
-    border-radius: 5px;
-}
-
-/* --- Eingabebereich --- */
+/* Eingabefelder */
 input[type="text"] {
     width: 95%;
     padding: 12px;
@@ -188,12 +174,12 @@ button {
     background-color: #3498DB; 
     color: white;
     border: none;
-    padding: 15px 30px;
+    padding: 10px 20px; /* Kleinerer Button, da es jetzt 5 sind */
     font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: 700;
     cursor: pointer;
-    margin-top: 30px;
+    margin-top: 10px;
     transition: background-color 0.3s, box-shadow 0.3s;
     border-radius: 8px;
     text-transform: uppercase;
@@ -205,35 +191,12 @@ button:hover {
     box-shadow: 0 6px 15px rgba(52, 152, 219, 0.6);
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.75em;
-    color: #444444;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: 40px;
-}
 
-/* Responsivität */
+/* Responsivität (unverändert) */
 @media (max-width: 1200px) {
-    #content-grid {
-        flex-direction: column;
-        gap: 30px;
-    }
-    #terminal-sidebar {
-        min-width: unset;
-    }
-    #evidence-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-    #top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
-    }
-    .status-bar {
-        margin-top: 10px;
-    }
+    #content-grid { flex-direction: column; gap: 30px; }
+    #terminal-sidebar { min-width: unset; }
+    #evidence-container { flex-direction: column; gap: 20px; }
+    #top-bar { flex-direction: column; align-items: flex-start; padding: 20px; }
+    .status-bar { margin-top: 10px; }
 }
