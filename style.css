@@ -1,106 +1,148 @@
 /* Grundlegender Reset & Agenten-Look */
 body {
-    font-family: 'Courier New', Courier, monospace; /* Monospace-Schrift */
-    background-color: #0d1117; /* Dunkler Hintergrund */
-    color: #00ff7f; /* Neon-Grün als Hauptfarbe */
+    font-family: Arial, sans-serif; /* Ähnlich wie im Bild, nicht monospace */
+    background-color: #0c0c0d; /* Sehr dunkler Hintergrund */
+    color: #bdbdbd; /* Hellgraue Hauptschrift */
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Verhindert horizontale Scrollbalken */
+    overflow-x: hidden;
 }
 
-/* --- Hintergrundbild-Logik --- */
+/* --- Hintergrundbild-Logik (Sichtbarkeit erhöht) --- */
 #background-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2; /* Unter dem Inhalt */
+    z-index: -2;
     overflow: hidden;
+    /* Dunkle, leicht rote Überlagerung, um den Kontrast zu erhöhen */
+    background-color: rgba(30, 0, 0, 0.5); 
 }
 
 #background-image {
     position: absolute;
+    /* Beibehaltung der responsiven 16:9 Logik */
     min-width: 100%;
     min-height: 100%;
-    /* Standardmäßig an der kleinsten Seite (meist Breite) anpassen */
     width: 100vw; 
     height: auto;
-    
-    /* Mitte zentrieren */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     
-    /* Optional: Leichte Verdunklung/Glitch-Effekt */
-    opacity: 0.3;
-    filter: blur(2px);
-    transition: width 0.3s, height 0.3s; /* Für das JS-Update */
+    /* Hintergrund ist nun sichtbarer und klarer */
+    opacity: 0.2; /* Weniger transparent */
+    filter: brightness(0.7) contrast(1.2); /* Etwas dunkler und kontrastreicher */
+    transition: width 0.3s, height 0.3s;
 }
 
-/* --- Hauptinhalts-Layout --- */
-#main-content {
+/* --- Haupt-Layout (Flexbox für Spalten-Layout) --- */
+#main-wrapper {
+    display: flex;
+    max-width: 1400px;
+    height: 100vh; /* Volle Viewport-Höhe */
+    margin: 0 auto;
+    padding-left: 50px; /* Platz für den vertikalen Titel */
     position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.75); /* Leichter transparenter Kasten */
-    border: 1px solid #00ff7f; /* Neon-Rahmen */
-    box-shadow: 0 0 10px #00ff7f; /* Leucht-Effekt */
 }
+
+/* Vertikaler Titel (Linke Spalte) */
+#vertical-title {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    writing-mode: vertical-rl; /* Vertikale Schrift */
+    transform: rotate(180deg);
+    font-size: 2em;
+    font-weight: bold;
+    color: #920000; /* Dunkelroter Akzent wie im Bild */
+    padding: 20px 10px;
+    border-right: 1px solid #920000;
+}
+
+/* Hauptinhalts-Bereich (Mitte) */
+#main-content {
+    flex: 2; /* Nimmt mehr Platz ein */
+    padding: 20px 30px;
+    padding-left: 0;
+    border-right: 1px solid #3d3d3d;
+    overflow-y: auto; /* Erlaubt Scrollen bei kleinem Fenster */
+}
+
+/* Terminal/Eingabe-Sidebar (Rechte Spalte) */
+#terminal-sidebar {
+    flex: 1; /* Nimmt weniger Platz ein */
+    padding: 20px 30px;
+    background-color: rgba(0, 0, 0, 0.4); /* Leichte Transparenz */
+    min-width: 400px; /* Mindestbreite für das Terminal */
+}
+
 
 /* --- Typografie & Akzente --- */
 header, section, footer {
-    padding: 15px 0;
-    border-bottom: 1px dashed rgba(0, 255, 127, 0.5);
+    padding: 10px 0;
 }
 
 h1 {
-    color: #ff0066; /* Warn-/Kritische Farbe */
-    text-shadow: 0 0 5px #ff0066;
-    font-size: 2.5em;
+    font-size: 1.8em;
+    color: #920000; /* Dunkelroter Haupttitel */
     margin-bottom: 5px;
 }
 
 h2 {
-    font-size: 1.2em;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    color: #777777; /* Graue Unterüberschrift */
     margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3d3d3d; /* Trennlinie */
 }
 
 h3 {
-    color: #33aaff; /* Akzentfarbe Blau */
-    border-left: 5px solid #33aaff;
-    padding-left: 10px;
+    font-size: 1.1em;
+    color: #bdbdbd;
+    text-transform: uppercase;
     margin-top: 25px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #3d3d3d;
 }
 
 .status-warning {
-    color: #ffcc00; /* Gelb für Status/Warnungen */
+    color: #920000;
+    font-weight: bold;
 }
 
 .status-success {
-    color: #00ff7f; /* Grün für Erfolg */
-    font-size: 1.5em;
+    color: #4CAF50; /* Grüner Erfolg */
+    font-size: 1.2em;
     font-weight: bold;
-    text-shadow: 0 0 8px #00ff7f;
+    text-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    display: block;
+    margin-top: 15px;
 }
 
 .mission-text {
     line-height: 1.6;
+    font-size: 0.9em;
+    color: #a8a8a8;
 }
 
-.placeholder {
+#map-area p, #images-area p {
     background-color: #1a1a1a;
-    padding: 20px;
-    text-align: center;
-    border: 1px dotted #33aaff;
-    color: #33aaff;
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid #3d3d3d;
+    font-style: italic;
+    font-size: 0.8em;
 }
 
 /* --- Eingabebereich (Terminal) --- */
 #terminal-input {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .input-group {
@@ -110,60 +152,70 @@ h3 {
 label {
     display: block;
     margin-bottom: 5px;
+    font-size: 0.85em;
+    color: #bdbdbd;
 }
 
 input[type="text"] {
-    width: 98%;
-    padding: 10px;
-    background-color: #1a1a1a;
-    border: 1px solid #00ff7f;
-    color: #00ff7f;
-    font-family: 'Courier New', Courier, monospace;
+    width: 95%;
+    padding: 8px;
+    background-color: #0c0c0d;
+    border: 1px solid #3d3d3d;
+    color: #bdbdbd;
+    font-family: Arial, sans-serif;
     font-size: 1em;
-    box-shadow: inset 0 0 5px #00ff7f;
+    box-shadow: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #920000;
+    outline: none;
 }
 
 /* Button-Styling */
 button {
-    background-color: #ff0066;
+    background-color: #920000;
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.1em;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
     cursor: pointer;
     margin-top: 20px;
     transition: background-color 0.3s;
-    box-shadow: 0 0 10px #ff0066;
+    text-transform: uppercase;
 }
 
 button:hover {
-    background-color: #cc0052;
+    background-color: #a02020;
 }
 
-/* Layout für Karten- und Bildbereich */
-#evidence-display {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+footer {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-size: 0.7em;
+    color: #777777;
 }
 
-#map-area, #images-area {
-    flex: 1;
-}
-
-/* Responsivität für kleinere Bildschirme */
-@media (max-width: 768px) {
-    #evidence-display {
+/* Responsivität */
+@media (max-width: 1000px) {
+    #main-wrapper {
         flex-direction: column;
+        height: auto;
     }
-    
-    h1 {
-        font-size: 2em;
+    #vertical-title {
+        display: none; /* Auf kleinen Geräten ausblenden */
     }
-    
-    #main-content {
-        margin: 10px;
-        padding: 10px;
+    #main-content, #terminal-sidebar {
+        min-width: unset;
+        border-right: none;
+        padding: 20px;
+    }
+    footer {
+        position: relative;
+        text-align: right;
+        padding-top: 20px;
     }
 }
