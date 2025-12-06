@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A SYNDICATE'S TRACE // CLASSIFIED</title>
+    <title>TRACE PROTOCOL // SECURE CHANNEL</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="background-container">
-        <img src="hintergrund.jpg" id="background-image" alt="Agenten-Pinnwand">
-        <div id="vignette-overlay"></div>
+        <img src="hintergrund.jpg" id="background-image" alt="Professionelles Büro / Kontrollraum">
+        <div id="dimmer-overlay"></div>
     </div>
 
     <audio id="agent-audio" loop autoplay>
@@ -19,78 +19,71 @@
 
     <div id="main-wrapper">
         
-        <aside id="vertical-title">
-            A SYNDICATE'S TRACE // CLASSIFIED
-        </aside>
+        <header id="top-bar">
+            <h1>TRACE PROTOCOL // SECURE CHANNEL</h1>
+            <h2 class="status-bar">STATUS: <span class="status-neutral">OPERATIONAL</span></h2>
+        </header>
 
-        <div id="main-content">
-            <header>
-                <h1>A SYNDICATE'S TRACE</h1>
-                <h2>// THE COLLECTED EVIDENCE ALLOWED US TO TRACE OUR SUSPECTS //</h2>
-            </header>
-
-            <section id="mission-briefing">
-                <h3>[ TRACKING REPORT - ALPHA 7 ]</h3>
-                <p class="mission-text">
-                    Fünf kritische Beweisstücke wurden durch eine Datenpanne maskiert und auf fünf definierte Zonen in Manhattan verteilt. Ihre Aufgabe: **Validieren Sie die Zonen** und **Identifizieren Sie die Ziel-Datenpunkte** (Telefonnummern, Namen, Kennzeichnungen). Die Koordinaten (Bilder) und die Zonenkarte sind im Anhang. Geben Sie die **fünf korrekten Schlüsselinformationen** in das Terminal ein, um die finale Identität des Targets freizuschalten.
-                </p>
-            </section>
-
-            <section id="evidence-display">
-                <div id="map-area" class="evidence-box">
-                    <h3>[ ZONE MAP - New York ]</h3>
-                    <p>[[ ANALOGE KARTE: NY - 5 GEFÄHRLICHE ZONEN ]]</p>
-                </div>
-                
-                <div id="images-area" class="evidence-box">
-                    <h3>[ EVIDENTIAL PHOTOS - Zensiert ]</h3>
-                    <p>[[ ANALOGE FOTOS: STREET VIEW - Zensiert ]]</p>
-                </div>
-            </section>
-        </div>
-
-        <div id="terminal-sidebar">
-            <header>
-                <h1 class="alt-h1">FILE TRACE TERMINAL</h1>
-                <h2><span class="status-neutral">STATUS: AWAITING INPUT</span></h2>
-            </header>
-
-            <section id="terminal-input">
-                <form id="key-submission-form">
-                    <div class="input-group">
-                        <label for="key1">DATA POINT 1 (T-1):</label>
-                        <input type="text" id="key1" name="key1" placeholder="KEY DATA 1">
-                    </div>
-                    <div class="input-group">
-                        <label for="key2">DATA POINT 2 (T-2):</label>
-                        <input type="text" id="key2" name="key2" placeholder="KEY DATA 2">
-                    </div>
-                    <div class="input-group">
-                        <label for="key3">DATA POINT 3 (T-3):</label>
-                        <input type="text" id="key3" name="key3" placeholder="KEY DATA 3">
-                    </div>
-                    <div class="input-group">
-                        <label for="key4">DATA POINT 4 (T-4):</label>
-                        <input type="text" id="key4" name="key4" placeholder="KEY DATA 4">
-                    </div>
-                    <div class="input-group">
-                        <label for="key5">DATA POINT 5 (T-5):</label>
-                        <input type="text" id="key5" name="key5" placeholder="KEY DATA 5">
-                    </div>
-                    <button type="submit" id="submit-keys">EXECUTE TRACE</button>
-                </form>
-            </section>
+        <div id="content-grid">
             
-            <section id="result-display" style="display:none;">
-                <h3>[ TRACE RESULT ]</h3>
-                <p id="final-name" class="status-success"></p>
-            </section>
+            <div id="main-content" class="content-panel">
+                <section id="mission-briefing">
+                    <h3>[ MISSION BRIEFING: NYC AREA ]</h3>
+                    <p class="mission-text">
+                        Das Target hat kritische Daten an fünf Standorten in Manhattan fragmentiert. Ihre Aufgabe ist es, die **fünf Datenpunkte** (Namen, Kennungen, Adressen, etc.) anhand der beigefügten geografischen und visuellen Hinweise zu validieren und in das Terminal einzugeben. Bei korrekter Eingabe erfolgt eine **finale Identitätsbestätigung** und der Abschluss des Protokolls.
+                    </p>
+                </section>
 
-            <footer>
-                <p>23:55 // CLASSIFIED // LEVEL 5 ACCESS REQUIRED</p>
-            </footer>
-        </div>
+                <div id="evidence-display">
+                    <div id="map-area" class="evidence-box">
+                        <h3>[ GEOGRAPHISCHE ZONENKARTE ]</h3>
+                        <p>[[ ANALOGE KARTE: NY - 5 MARKIERTE SEKTIONEN ]]</p>
+                    </div>
+                    
+                    <div id="images-area" class="evidence-box">
+                        <h3>[ VISUELLE DATENFRAGNMENTE (Zensiert) ]</h3>
+                        <p>[[ ANALOGE FOTOS: STREET VIEW - Zensiert ]]</p>
+                    </div>
+                </div>
+            </div>
 
+            <div id="terminal-sidebar" class="content-panel">
+                <section id="terminal-input">
+                    <h3>[ VALIDATION TERMINAL ]</h3>
+                    <form id="key-submission-form">
+                        <div class="input-group">
+                            <label for="key1">DATA POINT 1 (CODE A):</label>
+                            <input type="text" id="key1" name="key1" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <div class="input-group">
+                            <label for="key2">DATA POINT 2 (CODE B):</label>
+                            <input type="text" id="key2" name="key2" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <div class="input-group">
+                            <label for="key3">DATA POINT 3 (CODE C):</label>
+                            <input type="text" id="key3" name="key3" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <div class="input-group">
+                            <label for="key4">DATA POINT 4 (CODE D):</label>
+                            <input type="text" id="key4" name="key4" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <div class="input-group">
+                            <label for="key5">DATA POINT 5 (CODE E):</label>
+                            <input type="text" id="key5" name="key5" placeholder="ENTER VALIDATED DATA">
+                        </div>
+                        <button type="submit" id="submit-keys">RUN IDENTIFICATION PROTOCOL</button>
+                    </form>
+                </section>
+                
+                <section id="result-display" style="display:none;">
+                    <h3>[ PROTOCOL RESULT ]</h3>
+                    <p id="final-name" class="status-success"></p>
+                </section>
+            </div>
+
+        </div> <footer>
+            <p>ASSET VALIDATION PROTOCOL V3.1.5 | CLASSIFIED LEVEL 5</p>
+        </footer>
     </div> <script src="script.js"></script>
 </body>
 </html>
