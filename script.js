@@ -7,7 +7,7 @@ const CORRECT_KEYS = {
     key5: "KING-S"
 };
 
-const FINAL_NAME = "AGENT [Ihr Name hier]"; // Ersetzen Sie dies durch Ihren Namen!
+const FINAL_NAME = "[Ihr Name hier]"; // Ersetzen Sie dies durch Ihren Namen!
 
 // --- Funktion zur Hintergrundbild-Anpassung (Responsive 16:9) ---
 function adjustBackgroundImage() {
@@ -59,10 +59,12 @@ function checkSubmission(event) {
     const formData = new FormData(form);
     
     let allCorrect = true;
+    const accentColor = '#3498DB'; // Blau
+    const successColor = '#2ECC71'; // Grün
+    const failureColor = '#E74C3C'; // Rot
 
     for (const [key, value] of Object.entries(CORRECT_KEYS)) {
         const submittedValue = formData.get(key).trim();
-        // Bereinigung für robusten Abgleich
         const cleanSubmitted = submittedValue.toLowerCase().replace(/[^a-z0-9]/g, '');
         const cleanCorrect = value.toLowerCase().replace(/[^a-z0-9]/g, '');
         
@@ -70,17 +72,17 @@ function checkSubmission(event) {
 
         if (cleanSubmitted !== cleanCorrect) {
             allCorrect = false;
-            inputElement.style.borderColor = '#e6522c'; // Rostrot bei Fehler
-            inputElement.placeholder = "ERROR: CHECK SOURCE";
+            inputElement.style.borderColor = failureColor; 
+            inputElement.placeholder = "DATA INVALID";
         } else {
-            inputElement.style.borderColor = '#4CAF50'; // Gedämpftes Grün bei Erfolg
+            inputElement.style.borderColor = successColor; 
             inputElement.placeholder = "DATA VALIDATED";
         }
     }
 
     const resultDisplay = document.getElementById('result-display');
     const finalName = document.getElementById('final-name');
-    const headerH2 = document.querySelector('#terminal-sidebar h2');
+    const statusBar = document.querySelector('.status-bar span');
     const submitButton = document.getElementById('submit-keys');
 
     if (allCorrect) {
@@ -88,33 +90,32 @@ function checkSubmission(event) {
         finalName.classList.remove('status-failure');
         finalName.classList.add('status-success');
         
-        headerH2.innerHTML = '<span class="status-success">STATUS: ACCESS GRANTED</span>';
+        statusBar.textContent = 'PROTOCOL COMPLETE';
+        statusBar.style.color = successColor;
+        
         resultDisplay.style.display = 'block';
         resultDisplay.querySelector('h3').textContent = '[ FINAL REPORT ]';
         
         submitButton.disabled = true;
-        submitButton.textContent = 'TRACE COMPLETE';
-        submitButton.style.backgroundColor = '#4CAF50'; // Grün
+        submitButton.textContent = 'ACCESS GRANTED';
+        submitButton.style.backgroundColor = successColor;
     } else {
-        finalName.textContent = "WARNING! ONE OR MORE DATA POINTS ARE INVALID. RE-CHECK SOURCE.";
+        finalName.textContent = "VALIDATION FAILED. ONE OR MORE ENTRIES ARE INCORRECT.";
         finalName.classList.remove('status-success');
         finalName.classList.add('status-failure');
         
-        headerH2.innerHTML = '<span class="status-failure">STATUS: TRACE FAILED</span>';
+        statusBar.textContent = 'VALIDATION ERROR';
+        statusBar.style.color = failureColor;
+        
         resultDisplay.style.display = 'block';
-        resultDisplay.querySelector('h3').textContent = '[ TRACE RESULT ]';
+        resultDisplay.querySelector('h3').textContent = '[ PROTOCOL RESULT ]';
     }
 }
 
 // --- Initialisierung beim Laden der Seite ---
 window.onload = () => {
-    // 1. Hintergrundbild sofort anpassen und bei Größenänderung updaten
     adjustBackgroundImage();
     window.addEventListener('resize', adjustBackgroundImage);
-
-    // 2. Audio-Wiedergabe versuchen
     tryToPlayAudio();
-
-    // 3. Formular-Handler registrieren
     document.getElementById('key-submission-form').addEventListener('submit', checkSubmission);
 };
